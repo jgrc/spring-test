@@ -1,4 +1,6 @@
 package com.example.demo.application.query.product;
 
-public class GetProducts {
+import com.example.shared.application.Query;
+
+public class GetProducts implements Query {
 }

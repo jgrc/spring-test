@@ -13,11 +13,10 @@ import java.util.stream.Collectors;
 
 @RestController
 public class ProductController {
-    @Autowired
     private final GetProductsQueryHandler getProductsQueryHandler;
-    @Autowired
     private final GetProductQueryHandler getProductQueryHandler;
 
+    @Autowired
     public ProductController(GetProductsQueryHandler getProductsQueryHandler, GetProductQueryHandler getProductQueryHandler) {
         this.getProductsQueryHandler = getProductsQueryHandler;
         this.getProductQueryHandler = getProductQueryHandler;

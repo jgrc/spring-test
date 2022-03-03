@@ -1,6 +1,8 @@
 package com.example.demo.application.query.product;
 
-public class GetProduct {
+import com.example.shared.application.Query;
+
+public class GetProduct implements Query {
     private final Integer id;
 
     public GetProduct(Integer id) {
