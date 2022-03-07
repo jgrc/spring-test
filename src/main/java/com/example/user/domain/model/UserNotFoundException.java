@@ -1,6 +1,8 @@
 package com.example.user.domain.model;
 
-public class UserNotFoundException extends RuntimeException {
+import com.example.shared.domain.NotFoundException;
+
+public class UserNotFoundException extends NotFoundException {
     public UserNotFoundException(String message) {
         super(message);
     }
