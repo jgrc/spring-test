@@ -25,14 +25,8 @@ public class PostUserController {
     }
 
     @PostMapping(value = "/users", consumes = {"application/json"})
-    public String all(@RequestBody CreateUser command) {
+    public User action(@RequestBody CreateUser command) {
         createUserCommandHandler.handle(command);
-        User user = getUserByIdQueryHandler.handle(new GetUserById(command.id()));
-
-        return String.format(
-            "{\"id\":\"%S\",\"email\":\"%s\"}",
-            user.id().value().toString(),
-            user.email().value()
-        );
+        return getUserByIdQueryHandler.handle(new GetUserById(command.id()));
     }
 }

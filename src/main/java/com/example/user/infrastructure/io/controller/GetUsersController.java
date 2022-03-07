@@ -6,7 +6,7 @@ import com.example.user.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.stream.Collectors;
+import java.util.Collection;
 
 @RestController
 public class GetUsersController {
@@ -18,19 +18,7 @@ public class GetUsersController {
     }
 
     @GetMapping("/users")
-    public String action() {
-        return handler
-            .handle(new GetUsers())
-            .stream()
-            .map(this::serialice)
-            .collect(Collectors.joining(",", "[", "]"));
-    }
-
-    private String serialice(User user) {
-        return String.format(
-            "{\"id\":\"%S\",\"email\":\"%s\"}",
-            user.id().value().toString(),
-            user.email().value()
-        );
+    public Collection<User> action() {
+        return handler.handle(new GetUsers());
     }
 }
