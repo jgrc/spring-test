@@ -7,7 +7,7 @@ public class UserNotFoundException extends NotFoundException {
         super(message);
     }
 
-    public static UserNotFoundException fromId(UserId id) {
-        return new UserNotFoundException(String.format("User with id '%s' not found.", id.value()));
+    public static UserNotFoundException fromId(String id) {
+        return new UserNotFoundException(String.format("User with id '%s' not found.", id));
     }
 }

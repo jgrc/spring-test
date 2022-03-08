@@ -1,7 +1,7 @@
 package com.example.shared.domain;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface EventBus {
-    void publish(Collection<Event> events);
+    void publish(List<Event> events);
 }

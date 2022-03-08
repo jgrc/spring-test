@@ -6,7 +6,7 @@ import com.example.user.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class GetUsersController {
@@ -18,7 +18,7 @@ public class GetUsersController {
     }
 
     @GetMapping("/users")
-    public Collection<User> action() {
+    public List<User> action() {
         return handler.handle(new GetUsers());
     }
 }

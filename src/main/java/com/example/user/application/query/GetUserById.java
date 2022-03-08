@@ -1,16 +1,15 @@
 package com.example.user.application.query;
 
 import com.example.shared.application.Query;
-import java.util.UUID;
 
 public class GetUserById implements Query {
-    private final UUID id;
+    private final String id;
 
-    public GetUserById(UUID id) {
+    public GetUserById(String id) {
         this.id = id;
     }
 
-    public UUID id() {
+    public String id() {
         return id;
     }
 }

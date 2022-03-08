@@ -5,10 +5,10 @@ import com.example.shared.application.QueryHandler;
 import com.example.user.domain.service.UserFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.Collection;
+import java.util.List;
 
 @Component
-public class GetUsersQueryHandler implements QueryHandler<GetUsers, Collection<User>> {
+public class GetUsersQueryHandler implements QueryHandler<GetUsers, List<User>> {
     private final UserFinder userFinder;
 
     @Autowired
@@ -17,7 +17,7 @@ public class GetUsersQueryHandler implements QueryHandler<GetUsers, Collection<U
     }
 
     @Override
-    public Collection<User> handle(GetUsers $query) {
+    public List<User> handle(GetUsers $query) {
         return userFinder.all();
     }
 }

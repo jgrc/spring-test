@@ -5,15 +5,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class UserWasCreated implements Event {
-    private final UserId id;
+    private final String id;
     private final LocalDateTime on;
 
-    public UserWasCreated(UserId id, LocalDateTime on) {
+    public UserWasCreated(String id, LocalDateTime on) {
         this.id = id;
         this.on = on;
     }
 
-    public UserId id() {
+    public String id() {
         return id;
     }
 
@@ -25,7 +25,7 @@ public class UserWasCreated implements Event {
     public String toString() {
         return String.format(
             "[UserWasCreated, id='%s', on='%s']",
-            id.value(),
+            id,
             on.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         );
     }

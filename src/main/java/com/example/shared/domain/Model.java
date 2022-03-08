@@ -1,12 +1,10 @@
 package com.example.shared.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 abstract public class Model {
-    private final Collection<Event> events;
+    private final List<Event> events;
 
     public Model() {
         this.events = new ArrayList<>();
@@ -16,8 +14,8 @@ abstract public class Model {
         events.add(event);
     }
 
-    public Collection<Event> events() {
-        Collection<Event> events = new ArrayList<>(this.events);
+    public List<Event> events() {
+        List<Event> events = new ArrayList<>(this.events);
         this.events.clear();
 
         return events;

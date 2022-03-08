@@ -1,7 +1,6 @@
 package com.example.user.application.query;
 
 import com.example.user.domain.model.User;
-import com.example.user.domain.model.UserId;
 import com.example.shared.application.QueryHandler;
 import com.example.user.domain.service.UserFinder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,6 @@ public class GetUserByIdQueryHandler implements QueryHandler<GetUserById, User> 
 
     @Override
     public User handle(GetUserById query) {
-        return userFinder.get(new UserId(query.id()));
+        return userFinder.get(query.id());
     }
 }
