@@ -1,6 +1,7 @@
 package com.example.shared.domain;
 
 import com.example.shared.domain.event.Event;
+
 import java.util.ArrayList;
 import java.util.List;
 

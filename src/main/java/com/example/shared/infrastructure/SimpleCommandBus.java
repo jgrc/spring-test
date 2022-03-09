@@ -13,22 +13,22 @@ import java.util.Map;
 
 @Component
 public class SimpleCommandBus implements CommandBus {
-    private Map<String, CommandHandler> commandHandlers;
+    private Map<String, CommandHandler> handlers;
 
     @Autowired
     public SimpleCommandBus(ApplicationContext applicationContext) {
-        commandHandlers = new HashMap<>();
-        Map<String, CommandHandler> commandHandlerComponents = applicationContext.getBeansOfType(CommandHandler.class);
-        for (Map.Entry<String, CommandHandler> entry : commandHandlerComponents.entrySet()) {
+        handlers = new HashMap<>();
+        Map<String, CommandHandler> components = applicationContext.getBeansOfType(CommandHandler.class);
+        for (Map.Entry<String, CommandHandler> entry : components.entrySet()) {
             ParameterizedType handlerInterface = ((ParameterizedType) entry.getValue().getClass().getGenericInterfaces()[0]);
             String command = handlerInterface.getActualTypeArguments()[0].getTypeName();
-            commandHandlers.put(command, entry.getValue());
+            handlers.put(command, entry.getValue());
         }
     }
 
     @Override
     public void dispatch(Command command) {
-        CommandHandler handler = commandHandlers.get(command.getClass().getTypeName());
+        CommandHandler handler = handlers.get(command.getClass().getTypeName());
         handler.handle(command);
     }
 }

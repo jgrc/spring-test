@@ -1,6 +1,7 @@
 package com.example.user.infrastructure.persistence.converter;
 
 import com.example.user.domain.model.UserEmail;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 

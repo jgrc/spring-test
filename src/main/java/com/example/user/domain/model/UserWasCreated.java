@@ -1,6 +1,7 @@
 package com.example.user.domain.model;
 
 import com.example.shared.domain.event.Event;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

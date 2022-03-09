@@ -2,6 +2,7 @@ package com.example.user.domain.model;
 
 import com.example.shared.domain.Model;
 import com.example.user.infrastructure.persistence.converter.UserEmailConverter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
