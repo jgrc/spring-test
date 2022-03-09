@@ -23,6 +23,6 @@ public class UserCreator {
     public void create(String id, UserEmail email) {
         User user = new User(id, email, LocalDateTime.now());
         userRepository.save(user);
-        eventBus.publish(user.events());
+        user.events().forEach(eventBus::publish);
     }
 }

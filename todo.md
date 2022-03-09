@@ -1,6 +1,5 @@
 ### TODO
 - Bus with middleware (comands, queries, events)
-- Persistence
 - spring boot actuator
 - spring boot devtool
 - JWT security layer
