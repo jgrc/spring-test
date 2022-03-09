@@ -1,6 +1,6 @@
 package com.example.user.application.query;
 
-import com.example.shared.application.Query;
+import com.example.shared.application.query.Query;
 
 public class GetUserById implements Query {
     private final String id;

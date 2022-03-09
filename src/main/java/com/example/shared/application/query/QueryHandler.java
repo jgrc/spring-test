@@ -1,4 +1,4 @@
-package com.example.shared.application;
+package com.example.shared.application.query;
 
 public interface QueryHandler<Q extends Query, R> {
     R handle(Q query);

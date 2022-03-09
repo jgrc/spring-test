@@ -1,7 +1,7 @@
 package com.example.unit.user.domain.service;
 
-import com.example.shared.domain.Event;
-import com.example.shared.domain.EventBus;
+import com.example.shared.domain.event.Event;
+import com.example.shared.domain.event.EventBus;
 import com.example.user.domain.model.User;
 import com.example.user.domain.model.UserEmail;
 import com.example.user.domain.model.UserRepository;

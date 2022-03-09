@@ -1,6 +1,6 @@
 package com.example.user.application.command;
 
-import com.example.shared.application.CommandHandler;
+import com.example.shared.application.command.CommandHandler;
 import com.example.user.domain.model.UserEmail;
 import com.example.user.domain.service.UserCreator;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.example.user.application.command;
 
-import com.example.shared.application.Command;
+import com.example.shared.application.command.Command;
 
 public class CreateUser implements Command {
     private final String id;

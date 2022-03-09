@@ -1,7 +1,7 @@
 package com.example.shared.infrastructure;
 
-import com.example.shared.domain.Event;
-import com.example.shared.domain.EventBus;
+import com.example.shared.domain.event.Event;
+import com.example.shared.domain.event.EventBus;
 import org.springframework.stereotype.Component;
 
 @Component
