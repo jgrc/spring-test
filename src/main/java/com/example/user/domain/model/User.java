@@ -16,14 +16,14 @@ public class User extends Model {
     @Convert(converter = UserEmailConverter.class)
     private final UserEmail email;
 
-    public User(){
-        this(null, null);
-    }
-
-    public User(String id, UserEmail email) {
+    private User(String id, UserEmail email) {
         super();
         this.id = id;
         this.email = email;
+    }
+
+    public User(){
+        this(null, null);
     }
 
     public User(String id, UserEmail email, LocalDateTime now) {
