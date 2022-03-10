@@ -2,8 +2,7 @@
 - spring boot actuator
 - spring boot devtool
 - JWT security layer
-- Cucumber
-- Using own annotation to populate buses
+- Using test DB in cucumber
 
 ### ISSUES
 - User needs empty constructor (POJO) per findAll repo method
