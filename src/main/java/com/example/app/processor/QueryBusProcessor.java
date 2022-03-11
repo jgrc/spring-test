@@ -1,5 +1,8 @@
 package com.example.app.processor;
 
+import com.example.shared.application.command.CommandHandler;
+import com.example.shared.application.query.Query;
+import com.example.shared.application.query.QueryBus;
 import com.example.shared.application.query.QueryHandler;
 import com.example.shared.infrastructure.SimpleQueryBus;
 import org.springframework.beans.BeansException;
@@ -20,10 +23,9 @@ public class QueryBusProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if (bean instanceof QueryHandler) {
-            ParameterizedType handlerInterface = ((ParameterizedType) bean.getClass().getGenericInterfaces()[0]);
-            String query = handlerInterface.getActualTypeArguments()[0].getTypeName();
-            queryBus.register(query, (QueryHandler<?, ?>) bean);
+        if (bean.getClass().isAnnotationPresent(QueryBusComponent.class)) {
+            QueryBusComponent annotation = bean.getClass().getAnnotation(QueryBusComponent.class);
+            queryBus.register(annotation.classes(), (QueryHandler<? extends Query, ?>) bean);
         }
 
         return bean;

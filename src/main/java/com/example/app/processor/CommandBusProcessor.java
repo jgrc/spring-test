@@ -1,13 +1,12 @@
 package com.example.app.processor;
 
+import com.example.shared.application.command.Command;
 import com.example.shared.application.command.CommandHandler;
 import com.example.shared.infrastructure.SimpleCommandBus;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.ParameterizedType;
 
 @Component
 public class CommandBusProcessor implements BeanPostProcessor {
@@ -20,10 +19,9 @@ public class CommandBusProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if (bean instanceof CommandHandler) {
-            ParameterizedType handlerInterface = ((ParameterizedType) bean.getClass().getGenericInterfaces()[0]);
-            String command = handlerInterface.getActualTypeArguments()[0].getTypeName();
-            commandBus.register(command, (CommandHandler<?>) bean);
+        if (bean.getClass().isAnnotationPresent(CommandBusComponent.class)) {
+            CommandBusComponent annotation = bean.getClass().getAnnotation(CommandBusComponent.class);
+            commandBus.register(annotation.classes(), (CommandHandler<? extends Command>) bean);
         }
 
         return bean;

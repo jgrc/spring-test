@@ -10,19 +10,19 @@ import java.util.Map;
 
 @Component
 public class SimpleCommandBus implements CommandBus {
-    private final Map<String, CommandHandler<?>> handlers;
+    private final Map<Class<? extends Command>, CommandHandler<? extends Command>> handlers;
 
     public SimpleCommandBus() {
         this.handlers = new HashMap<>();
     }
 
-    public void register(String command, CommandHandler<?> handler) {
+    public void register(Class<? extends Command> command, CommandHandler<? extends Command> handler) {
         handlers.put(command, handler);
     }
 
     @Override
     public void dispatch(Command command) {
-        CommandHandler handler = handlers.get(command.getClass().getTypeName());
+        CommandHandler handler = handlers.get(command.getClass());
         handler.handle(command);
     }
 }

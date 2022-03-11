@@ -10,19 +10,19 @@ import java.util.Map;
 
 @Component
 public class SimpleQueryBus implements QueryBus {
-    private final Map<String, QueryHandler<?, ?>> handlers;
+    private final Map<Class<? extends Query>, QueryHandler<? extends Query, ?>> handlers;
 
     public SimpleQueryBus() {
         this.handlers = new HashMap<>();
     }
 
-    public void register(String query, QueryHandler<?, ?> handler) {
+    public void register(Class<? extends Query> query, QueryHandler<? extends Query, ?> handler) {
         handlers.put(query, handler);
     }
 
     @Override
     public Object dispatch(Query query) {
-        QueryHandler handler = handlers.get(query.getClass().getTypeName());
+        QueryHandler handler = handlers.get(query.getClass());
         return handler.handle(query);
     }
 }
