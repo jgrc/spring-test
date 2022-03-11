@@ -4,10 +4,10 @@ import com.example.user.domain.model.User;
 import com.example.user.domain.model.UserNotFoundException;
 import com.example.user.domain.model.UserRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository

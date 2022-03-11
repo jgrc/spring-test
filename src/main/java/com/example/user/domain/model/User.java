@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Table(name="users")
 public class User extends Model {
     @Id
-    @Column(name = "id", columnDefinition = "CHAR", length = 36)
+    @Column(name = "id", columnDefinition = "CHAR(36)")
     private final String id;
-    @Column(name = "email", unique = true, nullable = false, columnDefinition = "VARCHAR", length = 255)
+    @Column(name = "email", unique = true, nullable = false, columnDefinition = "VARCHAR(255)")
     @Convert(converter = UserEmailConverter.class)
     private final UserEmail email;
 

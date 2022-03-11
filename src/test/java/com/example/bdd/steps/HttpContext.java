@@ -2,12 +2,11 @@ package com.example.bdd.steps;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,8 +19,12 @@ public class HttpContext {
 
     @Autowired
     public HttpContext(TestRestTemplate template) {
-
         this.template = template;
+    }
+
+    @Before
+    public void clear() {
+        response = null;
     }
 
     @When("I send POST to {string} with body:")
