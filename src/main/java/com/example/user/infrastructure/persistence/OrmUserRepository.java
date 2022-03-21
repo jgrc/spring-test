@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Transactional
+@Transactional(readOnly = true)
 public class OrmUserRepository implements UserRepository {
     @PersistenceContext
     private final EntityManager em;
@@ -36,6 +36,7 @@ public class OrmUserRepository implements UserRepository {
     }
 
     @Override
+    @Transactional
     public void save(User user) {
         em.persist(user);
         em.flush();

@@ -9,7 +9,7 @@ Feature: Api endpoint to recover user list
     Then the response status should be "200 OK" with body:
       """
       [
-        {"id":"00000000-0000-0000-0000-000000000002","email":"other@email.com"},
-        {"id":"00000000-0000-0000-0000-000000000001","email":"test@email.com"}
+        {"id":"00000000-0000-0000-0000-000000000001","email":"test@email.com"},
+        {"id":"00000000-0000-0000-0000-000000000002","email":"other@email.com"}
       ]
       """
