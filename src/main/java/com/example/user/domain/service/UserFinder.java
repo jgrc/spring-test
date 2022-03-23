@@ -1,6 +1,7 @@
 package com.example.user.domain.service;
 
 import com.example.user.domain.model.User;
+import com.example.user.domain.model.UserId;
 import com.example.user.domain.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class UserFinder {
         this.userRepository = userRepository;
     }
 
-    public User get(String userId) {
+    public User get(UserId userId) {
         return userRepository.get(userId);
     }
 

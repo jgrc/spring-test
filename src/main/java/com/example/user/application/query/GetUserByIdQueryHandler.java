@@ -3,6 +3,7 @@ package com.example.user.application.query;
 import com.example.app.processor.QueryBusComponent;
 import com.example.user.domain.model.User;
 import com.example.shared.application.query.QueryHandler;
+import com.example.user.domain.model.UserId;
 import com.example.user.domain.service.UserFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,6 @@ public class GetUserByIdQueryHandler implements QueryHandler<GetUserById, User> 
 
     @Override
     public User handle(GetUserById query) {
-        return userFinder.get(query.id());
+        return userFinder.get(new UserId(query.id()));
     }
 }

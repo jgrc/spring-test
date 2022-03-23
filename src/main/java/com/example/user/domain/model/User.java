@@ -9,29 +9,32 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="users")
 public class User extends Model {
-    @Id
-    @Column(name = "id", columnDefinition = "CHAR(36)")
-    private final String id;
+    @EmbeddedId
+    private final UserId id;
     @Column(name = "email", unique = true, nullable = false, columnDefinition = "VARCHAR(255)")
     @Convert(converter = UserEmailConverter.class)
     private final UserEmail email;
 
-    private User(String id, UserEmail email) {
+    public UserId getId() {
+        return id;
+    }
+
+    private User(UserId id, UserEmail email) {
         super();
         this.id = id;
         this.email = email;
     }
 
-    public User(){
+    protected User(){
         this(null, null);
     }
 
-    public User(String id, UserEmail email, LocalDateTime now) {
+    public User(UserId id, UserEmail email, LocalDateTime now) {
         this(id, email);
         apply(new UserWasCreated(id, now));
     }
 
-    public String id() {
+    public UserId id() {
         return id;
     }
 

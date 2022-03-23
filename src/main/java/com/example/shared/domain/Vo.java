@@ -1,6 +1,8 @@
 package com.example.shared.domain;
 
-interface Vo<T> {
+import java.io.Serializable;
+
+public interface Vo<T> extends Serializable {
     T value();
     boolean equals(Vo<T> other);
 }

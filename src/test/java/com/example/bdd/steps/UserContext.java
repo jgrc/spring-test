@@ -3,6 +3,7 @@ package com.example.bdd.steps;
 import com.example.shared.application.command.CommandBus;
 import com.example.user.application.command.CreateUser;
 import com.example.user.domain.model.User;
+import com.example.user.domain.model.UserId;
 import com.example.user.domain.service.UserFinder;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -37,7 +38,7 @@ public class UserContext {
             .asMaps(String.class, String.class)
             .forEach(
                 (Map<String, String> row) -> {
-                    User user = userFinder.get(row.get("id"));
+                    User user = userFinder.get(new UserId(row.get("id")));
                     Assertions.assertEquals(row.get("email"), user.email().value());
                 }
             );

@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface UserRepository {
     List<User> all();
-    User get(String id) throws UserNotFoundException;
+    User get(UserId id) throws UserNotFoundException;
     void save(User user);
 }

@@ -1,6 +1,7 @@
 package com.example.unit.user.domain.service;
 
 import com.example.user.domain.model.User;
+import com.example.user.domain.model.UserId;
 import com.example.user.domain.model.UserRepository;
 import com.example.user.domain.service.UserFinder;
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +29,7 @@ public class UserFinderTest {
 
     @Test
     public void testGetSuccess() {
-        String id = UUID.randomUUID().toString();
+        UserId id = new UserId(UUID.randomUUID().toString());
         User expectedUser = Mockito.mock(User.class);
 
         Mockito.when(userRepository.get(id)).thenReturn(expectedUser);

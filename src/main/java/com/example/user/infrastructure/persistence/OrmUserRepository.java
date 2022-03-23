@@ -1,6 +1,7 @@
 package com.example.user.infrastructure.persistence;
 
 import com.example.user.domain.model.User;
+import com.example.user.domain.model.UserId;
 import com.example.user.domain.model.UserNotFoundException;
 import com.example.user.domain.model.UserRepository;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,7 @@ public class OrmUserRepository implements UserRepository {
     }
 
     @Override
-    public User get(String id) {
+    public User get(UserId id) {
         User user = em.find(User.class, id);
         if (user == null) {
             throw UserNotFoundException.fromId(id);
