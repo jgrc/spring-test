@@ -5,6 +5,7 @@ import com.example.shared.application.query.QueryBus;
 import com.example.user.application.command.CreateUser;
 import com.example.user.application.query.GetUserById;
 import com.example.user.domain.model.User;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,8 @@ public class PostUserController {
     }
 
     @PostMapping(value = "/users", consumes = {"application/json"})
-    public User action(@RequestBody CreateUser command) {
+    public User action(@RequestBody JsonNode payload) {
+        CreateUser command = new CreateUser(payload.get("id").textValue(), payload.get("email").textValue());
         commandBus.dispatch(command);
 
         return (User) queryBus.dispatch(new GetUserById(command.id()));
