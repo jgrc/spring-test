@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
@@ -31,12 +32,24 @@ public class HttpContext {
     public void iSendPostToWithBody(String url, String body) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        this.response = template.postForEntity(url, new HttpEntity<>(body, headers), String.class);
+        this.response = template.exchange(url, HttpMethod.POST, new HttpEntity<>(body, headers), String.class);
+    }
+
+    @When("I send PUT to {string} with body:")
+    public void iSendPutToWithBody(String url, String body) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        this.response = template.exchange(url, HttpMethod.PUT, new HttpEntity<>(body, headers), String.class);
     }
 
     @When("I send GET to {string}")
     public void iSendGetTo(String url) {
-        this.response = template.getForEntity(url, String.class);
+        this.response = template.exchange(url, HttpMethod.GET, new HttpEntity<>(""), String.class);
+    }
+
+    @Then("the response status should be {string}")
+    public void responseStatusShouldBeWithBody(String expectedStatus) throws JsonProcessingException {
+        Assertions.assertEquals(expectedStatus, response.getStatusCode().toString());
     }
 
     @Then("the response status should be {string} with body:")

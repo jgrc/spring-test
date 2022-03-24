@@ -35,11 +35,11 @@ public class UserCreatorTest {
         UserId id = new UserId(UUID.randomUUID().toString());
         UserEmail email = new UserEmail("random@ran.dom");
         sut.create(id, email);
-        Mockito.verify(userRepository).save(
-            Mockito.argThat((User user) -> user.id().equals(id) && user.email().equals(email))
-        );
-        Mockito.verify(eventBus).publish(
-            Mockito.argThat((Event event) -> event instanceof UserWasCreated)
-        );
+        Mockito
+                .verify(userRepository)
+                .save(Mockito.argThat((User user) -> user.id().equals(id) && user.email().equals(email)));
+        Mockito
+                .verify(eventBus)
+                .publish(Mockito.argThat((Event event) -> event instanceof UserWasCreated));
     }
 }

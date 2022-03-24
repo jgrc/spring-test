@@ -8,13 +8,7 @@ Feature: Api endpoint to create users
         "email" : "test@email.com"
       }
     """
-    Then the response status should be "200 OK" with body:
-    """
-      {
-        "id" : "00000000-0000-0000-0000-000000000001",
-        "email" : "test@email.com"
-      }
-    """
+    Then the response status should be "201 CREATED"
     And the following users should exists:
       | id                                   | email          |
       | 00000000-0000-0000-0000-000000000001 | test@email.com |

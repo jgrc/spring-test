@@ -13,7 +13,7 @@ public class User extends Model {
     private final UserId id;
     @Column(name = "email", unique = true, nullable = false, columnDefinition = "VARCHAR(255)")
     @Convert(converter = UserEmailConverter.class)
-    private final UserEmail email;
+    private UserEmail email;
 
     public UserId getId() {
         return id;
@@ -29,9 +29,9 @@ public class User extends Model {
         this(null, null);
     }
 
-    public User(UserId id, UserEmail email, LocalDateTime now) {
+    public User(UserId id, UserEmail email, LocalDateTime when) {
         this(id, email);
-        apply(new UserWasCreated(id, now));
+        apply(new UserWasCreated(id, email, when));
     }
 
     public UserId id() {
@@ -40,5 +40,11 @@ public class User extends Model {
 
     public UserEmail email() {
         return email;
+    }
+
+    public void changeEmail(UserEmail newUserEmail, LocalDateTime when) {
+        UserEmail oldEmail = email;
+        email = newUserEmail;
+        apply(new UserWasChangedEmail(id, oldEmail, newUserEmail, when));
     }
 }

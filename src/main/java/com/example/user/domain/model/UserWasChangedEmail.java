@@ -5,14 +5,16 @@ import com.example.shared.domain.event.Event;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class UserWasCreated implements Event {
+public class UserWasChangedEmail implements Event {
     private final UserId id;
-    private final UserEmail email;
+    private final UserEmail oldEmail;
+    private final UserEmail newEmail;
     private final LocalDateTime on;
 
-    public UserWasCreated(UserId id, UserEmail email, LocalDateTime on) {
+    public UserWasChangedEmail(UserId id, UserEmail oldEmail, UserEmail newEmail, LocalDateTime on) {
         this.id = id;
-        this.email = email;
+        this.oldEmail = oldEmail;
+        this.newEmail = newEmail;
         this.on = on;
     }
 
@@ -20,8 +22,12 @@ public class UserWasCreated implements Event {
         return id;
     }
 
-    public UserEmail email() {
-        return email;
+    public UserEmail oldEmail() {
+        return oldEmail;
+    }
+
+    public UserEmail newEmail() {
+        return newEmail;
     }
 
     public LocalDateTime on() {
@@ -31,9 +37,10 @@ public class UserWasCreated implements Event {
     @Override
     public String toString() {
         return String.format(
-            "[UserWasCreated, id='%s', email='%s', on='%s']",
+            "[UserWasChangedEmail, id='%s', old_email='%s', new_email='%s', on='%s']",
             id.value(),
-            email.value(),
+            oldEmail.value(),
+            newEmail.value(),
             on.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         );
     }
