@@ -1,5 +1,18 @@
 version: "3"
 services:
+  java:
+    container_name: spring_jdk
+    image: gradle:7.4.1-jdk17-alpine
+    ports:
+      - '8080:8080'
+    networks:
+      - ntw
+    volumes:
+      - ./:/var/app
+    working_dir: /var/app
+    entrypoint: gradle bootRun
+    depends_on:
+      - db
   db:
     container_name: spring_db
     image: mysql:8.0
