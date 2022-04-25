@@ -24,11 +24,3 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - '4306:3306'
-    networks:
-      - ntw
-    volumes:
-      - ./var/mysql:/var/lib/mysql
-
-networks:
-  ntw:
-    driver: bridge
