@@ -11,16 +11,22 @@ import java.util.List;
 public class DbContext {
     @PersistenceContext
     private final EntityManager entityManager;
-    private final List<String> tables;
 
     public DbContext(EntityManager entityManager) {
         this.entityManager = entityManager;
-        tables = List.of("users");
     }
 
     @Before
     public void truncate() {
-        tables.forEach(this::truncate);
+        entityManager.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
+        getTables().forEach(this::truncate);
+        entityManager.createNativeQuery("SET REFERENTIAL_INTEGRITY TRUE").executeUpdate();
+    }
+
+    private List<String> getTables() {
+        return (List<String>) entityManager
+                .createNativeQuery("SELECT table_name FROM information_schema.tables WHERE table_schema = SCHEMA()")
+                .getResultList();
     }
 
     private void truncate(String table) {

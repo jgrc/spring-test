@@ -1,0 +1,9 @@
+type User implements Node {
+    id: ID!
+    email: String!
+}
+
+type Query {
+    user(id: ID!): User
+    all: [User]
+}
